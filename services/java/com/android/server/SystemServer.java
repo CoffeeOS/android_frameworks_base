@@ -94,6 +94,7 @@ import com.android.server.usb.UsbService;
 import com.android.server.wallpaper.WallpaperManagerService;
 import com.android.server.webkit.WebViewUpdateService;
 import com.android.server.wm.WindowManagerService;
+import com.android.server.gesture.EdgeGestureService;
 
 import cyanogenmod.providers.CMSettings;
 import dalvik.system.VMRuntime;
@@ -446,6 +447,7 @@ public final class SystemServer {
         MmsServiceBroker mmsService = null;
         EntropyMixer entropyMixer = null;
         CameraService cameraService = null;
+EdgeGestureService edgeGestureService = null;
 
         boolean disableStorage = SystemProperties.getBoolean("config.disable_storage", false);
         boolean disableBluetooth = SystemProperties.getBoolean("config.disable_bluetooth", false);
@@ -1017,6 +1019,13 @@ public final class SystemServer {
                     reportWtf("starting BackgroundDexOptService", e);
                 }
 
+            try {
+                Slog.i(TAG, "EdgeGesture service");
+                edgeGestureService = new EdgeGestureService(context, inputManager);
+                ServiceManager.addService("edgegestureservice", edgeGestureService);
+            } catch (Throwable e) {
+                Slog.e(TAG, "Failure starting EdgeGesture service", e);
+            }
             }
 
             mSystemServiceManager.startService(LauncherAppsService.class);
@@ -1130,6 +1139,14 @@ public final class SystemServer {
                 gestureService.systemReady();
             } catch (Throwable e) {
                 reportWtf("making Gesture Sensor Service ready", e);
+            }
+        }
+
+        if (edgeGestureService != null) {
+            try {
+                edgeGestureService.systemReady();
+            } catch (Throwable e) {
+                reportWtf("making EdgeGesture service ready", e);
             }
         }
 
