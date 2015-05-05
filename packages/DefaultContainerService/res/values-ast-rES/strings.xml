@@ -21,4 +21,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- service name [CHAR LIMIT=25]  -->
   <string name="service_name">Encontu d\'accesu a paquete</string>
+    <string name="gestures_message">Draw your gesture here</string>
 </resources>
