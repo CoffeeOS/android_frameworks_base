@@ -188,7 +188,7 @@
     <dimen name="qs_data_usage_usage_text_size">36sp</dimen>
 
     <dimen name="segmented_button_spacing">0dp</dimen>
-    <dimen name="borderless_button_radius">2dp</dimen>
+    <dimen name="borderless_button_radius">8dp</dimen>
 
     <!-- How far the expanded QS panel peeks from the header in collapsed state. -->
     <dimen name="qs_peek_height">0.0dp</dimen>
