@@ -3247,6 +3247,12 @@ public final class Settings {
         /** @hide */
         public static final Validator SHOW_TOUCHES_VALIDATOR = sBooleanValidator;
 
+         /**
+         * Whether to show Brightness Icon On Brightness Slider
+         * @hide
+         */
+        public static final String BRIGHTNESS_ICON = "brightness_icon";
+
         /**
          * Log raw orientation data from
          * {@link com.android.server.policy.WindowOrientationListener} for use with the
