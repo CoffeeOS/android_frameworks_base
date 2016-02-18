@@ -3631,6 +3631,12 @@ public final class Settings {
          */
         public static final String STATUS_BAR_TRAFFIC = "status_bar_traffic";
 
+        /**
+         * Whether to show four tiles per row.
+         * @hide
+         */
+        public static final String QS_USE_FOUR_COLUMNS = "qs_use_four_columns";
+
 	/**
          * Whether to display app circle sidebar
          * @hide
