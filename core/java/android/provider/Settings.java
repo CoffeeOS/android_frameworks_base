@@ -3905,6 +3905,14 @@ public final class Settings {
         public static final String HIDE_CARRIER_MAX_NOTIFICATION = "hide_carrier_max_notification";
 
         /**
+         * Whether to apply a shadow on top of the header image
+         * value is the alpha value of the shadow image is 0 -> no shadow -> 255 black
+         * @hide
+         */
+        public static final String STATUS_BAR_CUSTOM_HEADER_SHADOW = "status_bar_custom_header_shadow";
+
+
+        /**
          * header image package to use for daylight header - package name - null if default
          * @hide
          */
