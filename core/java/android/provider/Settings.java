@@ -3752,6 +3752,12 @@ public final class Settings {
         public static final String STATUS_BAR_SHOW_CARRIER = "status_bar_show_carrier";
 
         /**
+         * whether to enable /disable showing charging current on lockscreen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_SHOW_CURRENT = "lock_screen_show_current";
+
+        /**
          * custom carrier label. The value is
          * String.
          */
