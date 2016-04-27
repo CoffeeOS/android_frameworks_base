@@ -171,6 +171,7 @@ public class VolumeDialog {
         mDialog.setContentView(R.layout.volume_dialog);
         mDialogView = (ViewGroup) mDialog.findViewById(R.id.volume_dialog);
         mDialogContentView = (ViewGroup) mDialog.findViewById(R.id.volume_dialog_content);
+
         mExpandButton = (ImageButton) mDialogView.findViewById(R.id.volume_expand_button);
         mExpandButton.setOnClickListener(mClickExpand);
         updateWindowWidthH();
@@ -236,6 +237,7 @@ public class VolumeDialog {
         w -= mContext.getResources().getDimensionPixelSize(R.dimen.notification_side_padding) * 2;
         lp.width = w;
         mDialogView.setLayoutParams(lp);
+        // Invalidates the blurring view when the content of the blurred view changes.
     }
 
     public void setStreamImportant(int stream, boolean important) {

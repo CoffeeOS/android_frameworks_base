@@ -4,7 +4,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src) \
-    src/com/android/systemui/EventLogTags.logtags
+    src/com/android/systemui/EventLogTags.logtags \
+    $(call all-renderscript-files-under, src)
 
 LOCAL_STATIC_JAVA_LIBRARIES := Keyguard \
     org.cyanogenmod.platform.internal \
@@ -17,6 +18,8 @@ LOCAL_FULL_LIBS_MANIFEST_FILES := $(LOCAL_PATH)/AndroidManifest_cm.xml
 LOCAL_PACKAGE_NAME := SystemUI
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
+
+LOCAL_RENDERSCRIPT_INCLUDES := frameworks/base/packages/SystemUI/com/android/systemui/xos/util
 
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 

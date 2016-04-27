@@ -13,17 +13,23 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.systemui.xos.util.BlurRelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/volume_dialog"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:blur="http://schemas.android.com/apk/res/com.android.systemui"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/volume_dialog_margin_bottom"
     android:layout_marginLeft="@dimen/notification_side_padding"
     android:layout_marginRight="@dimen/notification_side_padding"
     android:background="@drawable/volume_dialog_background"
-    android:translationZ="@dimen/volume_panel_z">
-
+    android:translationZ="@dimen/volume_panel_z"
+    blur:BlurRadius="15dp" >
+<RelativeLayout 
+    android:id="@+id/volume_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <com.android.keyguard.AlphaOptimizedImageButton
         android:id="@+id/volume_expand_button"
         style="@style/VolumeButtons"
@@ -47,5 +53,5 @@
 
         <include layout="@layout/volume_zen_footer" />
     </LinearLayout>
-
 </RelativeLayout>
+</com.android.systemui.xos.util.BlurRelativeLayout>
