@@ -2630,6 +2630,9 @@ class DatabaseHelper extends SQLiteOpenHelper {
             loadIntegerSetting(stmt, Settings.System.GESTURE_ANYWHERE_TRIGGER_HEIGHT,
                     R.integer.def_quick_gesture_height);
 
+            loadBooleanSetting(stmt, Settings.System.FLOATING_WINDOW_MODE,
+                    R.bool.def_floating_window_mode);
+
             /*
              * IMPORTANT: Do not add any more upgrade steps here as the global,
              * secure, and system settings are no longer stored in a database

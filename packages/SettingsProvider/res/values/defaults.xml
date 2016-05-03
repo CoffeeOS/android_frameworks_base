@@ -261,4 +261,7 @@
 
     <!-- Default for Settings.System.GESTURE_ANYWHERE_TRIGGER_HEIGHT -->
     <integer name="def_quick_gesture_height" translatable="false">100</integer>
+
+    <!-- Default for Settings.System.FLOATING_WINDOW_MODE -->
+    <bool name="def_floating_window_mode">true</bool>
 </resources>

@@ -8926,16 +8926,8 @@ public class WindowManagerService extends IWindowManager.Stub
             Slog.w(TAG, "Failed looking up window", ex);
             return null;
         }
-
-            // Dispatch to this window if it is wants key events.
-            if (win.canReceiveKeys()) {
-                if (mFocusedApp != null) {
-                    return win;
-                } else {
-                    return win;
-                }
-            }
-		}
+	return win;
+    }
 
     final void rebuildAppWindowListLocked() {
         rebuildAppWindowListLocked(getDefaultDisplayContentLocked());
@@ -10986,8 +10978,15 @@ public class WindowManagerService extends IWindowManager.Stub
 
             if (DEBUG_FOCUS_LIGHT) Slog.v(TAG, "findFocusedWindow: Found new focus @ " + i +
                         " = " + win);
-            return win;
-        }
+            // Dispatch to this window if it is wants key events.
+            if (win.canReceiveKeys()) {
+                if (mFocusedApp != null) {
+                    return win;
+                } else {
+                    return win;
+                }
+            }
+		}
 
         if (DEBUG_FOCUS_LIGHT) Slog.v(TAG, "findFocusedWindow: No focusable windows.");
         return null;
