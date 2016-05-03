@@ -17,4 +17,4 @@
 */
 -->
 
-<decelerateInterpolator />
+<decelerateInterpolator android:factor="1.65" xmlns:android="http://schemas.android.com/apk/res/android" />

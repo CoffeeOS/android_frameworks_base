@@ -16,11 +16,12 @@
 ** limitations under the License.
 */
 -->
-
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-        android:interpolator="@interpolator/decelerate_quad">
-	<translate android:fromXDelta="75%" android:toXDelta="0"
-        android:duration="@android:integer/config_shortAnimTime"/>
-    <alpha android:fromAlpha="0.0" android:toAlpha="1.0"
-            android:duration="@android:integer/config_shortAnimTime"/>
+        android:interpolator="@anim/decelerate_cdt"
+        android:detachWallpaper="true">
+    <scale android:fromXScale="1.5" android:toXScale="1.0"
+           android:fromYScale="1.5" android:toYScale="1.0"
+           android:pivotX="60%p" android:pivotY="60%p"
+           android:duration="@android:integer/config_mediumAnimTime" />
+  	<alpha android:duration="@android:integer/config_mediumAnimTime" android:fromAlpha="0" android:toAlpha="1.0" />
 </set>
