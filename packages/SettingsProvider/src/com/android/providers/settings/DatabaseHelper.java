@@ -2612,6 +2612,12 @@ class DatabaseHelper extends SQLiteOpenHelper {
             loadIntegerSetting(stmt, Settings.System.STATUS_BAR_SHOW_CARRIER,
                     R.integer.def_carrier_label);
 
+            loadBooleanSetting(stmt, Settings.System.HIDE_CARRIER_MAX_SWITCH,
+                    R.bool.def_hide_carrier_max_switch);
+
+            loadIntegerSetting(stmt, Settings.System.HIDE_CARRIER_MAX_NOTIFICATION,
+                    R.integer.def_hide_carrier_number);
+
             /*
              * IMPORTANT: Do not add any more upgrade steps here as the global,
              * secure, and system settings are no longer stored in a database

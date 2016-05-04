@@ -243,4 +243,10 @@
 
     <!-- Default for Settings.System.STATUS_BAR_SHOW_CARRIER -->
     <integer name="def_carrier_label" translatable="false">3</integer>
+
+    <!-- Default state for carrier label hiding on a number of notification -->
+    <bool name="def_hide_carrier_max_switch">true</bool>
+
+    <!-- Default for Settings.System.HIDE_CARRIER_MAX_NOTIFICATION -->
+    <integer name="def_hide_carrier_number" translatable="false">3</integer>
 </resources>
