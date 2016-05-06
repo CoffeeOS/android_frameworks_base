@@ -240,4 +240,7 @@
 
     <!-- Default for Settings.System.VIBRATE_WHEN_RINGING -->
     <integer name="def_vib_when_ringing" translatable="false">1</integer>
+
+    <!-- Default for Settings.System.STATUS_BAR_SHOW_CARRIER -->
+    <integer name="def_carrier_label" translatable="false">3</integer>
 </resources>
