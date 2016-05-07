@@ -125,4 +125,8 @@
 
     <color name="live_lockscreen_gradient_start">#00000000</color>
     <color name="live_lockscreen_gradient_end">#66000000</color>
+
+    <!-- Gesture Anywhere specific colors -->
+    <color name="gesture_overlay_background_fill_color">#80000000</color>
+    <color name="gesture_color">@android:color/holo_blue_light</color>
 </resources>
