@@ -249,4 +249,16 @@
 
     <!-- Default for Settings.System.HIDE_CARRIER_MAX_NOTIFICATION -->
     <integer name="def_hide_carrier_number" translatable="false">3</integer>
+
+    <!-- Default for Settings.System.GESTURE_ANYWHERE_POSITION -->
+    <string name="def_quick_gesture_position">Gravity.RIGHT</string>
+
+    <!-- Default for Settings.System.GESTURE_ANYWHERE_TRIGGER_WIDTH -->
+    <integer name="def_quick_gesture_width" translatable="false">30</integer>
+
+    <!-- Default for Settings.System.GESTURE_ANYWHERE_TRIGGER_TOP -->
+    <integer name="def_quick_gesture_top" translatable="false">0</integer>
+
+    <!-- Default for Settings.System.GESTURE_ANYWHERE_TRIGGER_HEIGHT -->
+    <integer name="def_quick_gesture_height" translatable="false">100</integer>
 </resources>

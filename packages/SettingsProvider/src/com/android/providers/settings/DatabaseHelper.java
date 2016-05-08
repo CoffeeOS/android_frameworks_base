@@ -2618,6 +2618,18 @@ class DatabaseHelper extends SQLiteOpenHelper {
             loadIntegerSetting(stmt, Settings.System.HIDE_CARRIER_MAX_NOTIFICATION,
                     R.integer.def_hide_carrier_number);
 
+            loadStringSetting(stmt, Settings.System.GESTURE_ANYWHERE_POSITION,
+                    R.string.def_quick_gesture_position);
+
+            loadIntegerSetting(stmt, Settings.System.GESTURE_ANYWHERE_TRIGGER_WIDTH,
+                    R.integer.def_quick_gesture_width);
+
+            loadIntegerSetting(stmt, Settings.System.GESTURE_ANYWHERE_TRIGGER_TOP,
+                    R.integer.def_quick_gesture_top);
+
+            loadIntegerSetting(stmt, Settings.System.GESTURE_ANYWHERE_TRIGGER_HEIGHT,
+                    R.integer.def_quick_gesture_height);
+
             /*
              * IMPORTANT: Do not add any more upgrade steps here as the global,
              * secure, and system settings are no longer stored in a database
