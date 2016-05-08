@@ -68,19 +68,22 @@ import com.android.systemui.statusbar.policy.DockBatteryController;
 import com.android.systemui.statusbar.policy.NetworkControllerImpl.EmergencyListener;
 import com.android.systemui.statusbar.policy.NextAlarmController;
 import com.android.systemui.statusbar.policy.UserInfoController;
+import com.android.systemui.statusbar.policy.WeatherController;
+import com.android.systemui.statusbar.policy.WeatherControllerImpl;
 import com.android.systemui.tuner.TunerService;
 
 import java.text.NumberFormat;
 
 import cyanogenmod.app.StatusBarPanelCustomTile;
 import cyanogenmod.providers.CMSettings;
+import cyanogenmod.weather.util.WeatherUtils;
 import org.cyanogenmod.internal.logging.CMMetricsLogger;
 
 /**
  * The view to manage the header area in the expanded status bar.
  */
 public class StatusBarHeaderView extends RelativeLayout implements View.OnClickListener,
-        NextAlarmController.NextAlarmChangeCallback, EmergencyListener {
+        NextAlarmController.NextAlarmChangeCallback, WeatherController.Callback, EmergencyListener {
 
     private boolean mExpanded;
     private boolean mListening;
@@ -142,6 +145,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
     private ActivityStarter mActivityStarter;
     private NextAlarmController mNextAlarmController;
+    private WeatherController mWeatherController;
     private QSDragPanel mQSPanel;
 
     private final Rect mClipBounds = new Rect();
@@ -400,6 +404,10 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mNextAlarmController = nextAlarmController;
     }
 
+    public void setWeatherController(WeatherController weatherController) {
+        mWeatherController = weatherController;
+    }
+
     public int getCollapsedHeight() {
         return mCollapsedHeight;
     }
@@ -499,8 +507,10 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         if (mListening) {
             mSettingsObserver.observe();
             mNextAlarmController.addStateChangedCallback(this);
+            mWeatherController.addCallback(this);
         } else {
             mNextAlarmController.removeStateChangedCallback(this);
+            mWeatherController.removeCallback(this);
             mSettingsObserver.unobserve();
         }
     }
@@ -538,6 +548,19 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mAlarmShowing = nextAlarm != null;
         updateEverything();
         requestCaptureValues();
+    }
+
+    @Override
+    public void onWeatherChanged(WeatherController.WeatherInfo info) {
+        if (Double.isNaN(info.temp) || info.condition == null) {
+            mWeatherLine1.setText(null);
+        } else {
+            mWeatherLine1.setText(mContext.getString(
+                    R.string.status_bar_expanded_header_weather_format,
+                    WeatherUtils.formatTemperature(info.temp, info.tempUnit),
+                    info.condition));
+        }
+        mWeatherLine2.setText(info.city);
     }
 
     private void updateClickTargets() {
@@ -643,6 +666,8 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             startClockActivity();
         } else if (v == mDateGroup) {
             startDateActivity();
+        } else if (v == mWeatherContainer) {
+            startForecastActivity();
         }
     }
 
@@ -666,6 +691,13 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         builder.appendPath("time");
         ContentUris.appendId(builder, System.currentTimeMillis());
         Intent intent = new Intent(Intent.ACTION_VIEW).setData(builder.build());
+        mActivityStarter.startActivity(intent, true /* dismissShade */);
+    }
+
+    private void startForecastActivity() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setComponent(WeatherControllerImpl.COMPONENT_WEATHER_FORECAST);
         mActivityStarter.startActivity(intent, true /* dismissShade */);
     }
 
