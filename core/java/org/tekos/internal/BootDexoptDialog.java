@@ -155,7 +155,7 @@ public class BootDexoptDialog extends Dialog {
         if (mWasApk != isApk) {
             mWasApk = isApk;
             if (isApk) {
-                mBootDexoptMsgDetail.setVisibility(View.VISIBLE);
+                mBootDexoptMsgDetail.setVisibility(View.GONE);
                 mBootDexoptProgress.setVisibility(View.VISIBLE);
             } else {
                 mBootDexoptMsgDetail.setVisibility(View.GONE);

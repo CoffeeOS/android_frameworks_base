@@ -16,6 +16,6 @@
 -->
 <resources>
     <!-- Boot dexopt layout -->
-    <color name="dexopt_background">#fff</color>
+    <color name="dexopt_background">#eeeeee</color>
     <color name="dexopt_text">#000</color>
 </resources>

@@ -15,8 +15,8 @@
      limitations under the License.
 -->
 <resources>
-    <!-- TekOS -->
-    <java-symbol type="drawable" name="logo_xdaviet" />
+    <!-- xOS -->
+    <java-symbol type="drawable" name="logo_xos" />
 
     <!-- Boot dexopt layout -->
     <java-symbol type="drawable" name="dexopt_brand_logo" />
