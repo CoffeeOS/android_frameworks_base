@@ -113,6 +113,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.graphics.Color;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.statusbar.NotificationVisibility;
@@ -342,6 +343,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private boolean mScreenTurningOn;
     private BatteryMeterView mBatteryView;
     private BatteryLevelTextView mBatteryTextView;
+
+    private int mShowCarrierLabel;
+    private TextView mCarrierLabel;
 
     int mPixelFormat;
     Object mQueueLock = new Object();
@@ -1328,6 +1332,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         mHeader.setBatteryController(mBatteryController);
 
+	mCarrierLabel = (TextView) mStatusBarView.findViewById(R.id.statusbar_carrier_text);
+        mShowCarrierLabel = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_SHOW_CARRIER, 1, UserHandle.USER_CURRENT);
         BatteryMeterView batteryMeterView =
                 ((BatteryMeterView) mStatusBarView.findViewById(R.id.battery));
         batteryMeterView.setBatteryStateRegistar(mBatteryController);
@@ -3212,6 +3219,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         && mFingerprintUnlockController.getMode()
                                 != FingerprintUnlockController.MODE_WAKE_AND_UNLOCK);
                 mIconController.setIconsDark(allowLight && light, animate);
+		if(allowLight && light) updateColorCarrierLabel();
             }
             // restore the recents bit
             if (wasRecentsVisible) {
@@ -3220,6 +3228,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             // send updated sysui visibility to window manager
             notifyUiVisibilityChanged(mSystemUiVisibility);
+        }
+    }
+
+    private void updateColorCarrierLabel() {
+        if (mCarrierLabel != null) {
+            if (mShowCarrierLabel == 2 || mShowCarrierLabel == 3) {
+                mCarrierLabel.setTextColor(Color.parseColor("#000000"));
+            } else {
+                mCarrierLabel.setVisibility(View.GONE);
+            }
         }
     }
 

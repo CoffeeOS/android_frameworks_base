@@ -84,7 +84,7 @@ public class PhoneStatusBarView extends PanelBar {
         mScrimController = scrimController;
     }
 
-    private void showStatusBarCarrier() {
+    public void showStatusBarCarrier() {
         mShowCarrierLabel = Settings.System.getIntForUser(getContext().getContentResolver(),
                 Settings.System.STATUS_BAR_SHOW_CARRIER, 1, UserHandle.USER_CURRENT);
     }
