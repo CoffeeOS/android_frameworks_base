@@ -1,4 +1,4 @@
-package com.android.systemui.marshrom;
+package com.android.systemui.xos;
 
 import android.content.Context;
 import android.hardware.Sensor;

@@ -119,7 +119,7 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.statusbar.NotificationVisibility;
 import com.android.internal.statusbar.StatusBarIcon;
 import com.android.internal.util.cm.ActionUtils;
-import com.android.internal.util.marshrom.Blur;
+import com.android.internal.util.xos.Blur;
 import com.android.keyguard.KeyguardHostView.OnDismissAction;
 import com.android.keyguard.KeyguardUpdateMonitor;
 import com.android.keyguard.KeyguardUpdateMonitorCallback;
@@ -192,7 +192,7 @@ import com.android.systemui.statusbar.stack.NotificationStackScrollLayout.OnChil
 import com.android.systemui.statusbar.stack.StackStateAnimator;
 import com.android.systemui.statusbar.stack.StackViewState;
 import com.android.systemui.statusbar.appcirclesidebar.AppCircleSidebar;
-import com.android.systemui.marshrom.ShakeSensorManager;
+import com.android.systemui.xos.ShakeSensorManager;
 import com.android.systemui.volume.VolumeComponent;
 import cyanogenmod.app.CMContextConstants;
 import cyanogenmod.app.CustomTileListenerService;

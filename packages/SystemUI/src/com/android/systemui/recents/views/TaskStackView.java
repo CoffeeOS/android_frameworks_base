@@ -51,7 +51,7 @@ import com.android.systemui.recents.model.RecentsTaskLoader;
 import com.android.systemui.recents.model.Task;
 import com.android.systemui.recents.model.TaskStack;
 import com.android.systemui.statusbar.DismissView;
-import com.android.systemui.marshrom.ShakeSensorManager;
+import com.android.systemui.xos.ShakeSensorManager;
 
 import java.util.ArrayList;
 import java.util.Collections;

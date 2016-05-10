@@ -1,4 +1,4 @@
-package com.android.internal.util.marshrom;
+package com.android.internal.util.xos;
 
 import android.content.Context;
 import android.graphics.Bitmap;
