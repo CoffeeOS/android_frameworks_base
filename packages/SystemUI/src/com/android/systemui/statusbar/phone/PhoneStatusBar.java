@@ -504,7 +504,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     resolver, CMSettings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0,
                     UserHandle.USER_CURRENT) == 1;
             enableShakeCleanByUser = Settings.System.getIntForUser(
-                    resolver, Settings.System.SHAKE_TO_CLEAN_NOTIFICATION, 1,
+                    resolver, Settings.System.SHAKE_TO_CLEAN_NOTIFICATION, 0,
                     UserHandle.USER_CURRENT) == 1;
 
             if (mNavigationBarView != null) {

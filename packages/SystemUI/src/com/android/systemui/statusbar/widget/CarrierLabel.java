@@ -162,7 +162,7 @@ public class CarrierLabel extends TextView {
         return operatorName;
     }
 
-    private void updateColor() {
+    public void updateColor() {
         ContentResolver resolver = mContext.getContentResolver();
 
         int defaultColor = getResources().getColor(R.color.status_bar_clock_color);

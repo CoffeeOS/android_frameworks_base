@@ -49,6 +49,7 @@ import com.android.systemui.statusbar.NotificationData;
 import com.android.systemui.statusbar.SignalClusterView;
 import com.android.systemui.statusbar.StatusBarIconView;
 import com.android.systemui.statusbar.policy.Clock;
+import com.android.systemui.statusbar.widget.CarrierLabel;
 import com.android.systemui.tuner.TunerService;
 import com.android.systemui.tuner.TunerService.Tunable;
 
@@ -325,6 +326,13 @@ public class StatusBarIconController implements Tunable {
         if (mCarrierLabel != null) {
             if (!forceHideByNumberOfIcons && !mUserDisabledStatusbarCarrier ) {
                mCarrierLabel.setVisibility(View.VISIBLE);
+	       int defaultColor = mContext.getResources().getColor(R.color.status_bar_clock_color);
+               int mCarrierColor = Settings.System.getInt(resolver,
+                   Settings.System.STATUS_BAR_CARRIER_COLOR, defaultColor);
+               if  (mCarrierColor == Integer.MIN_VALUE) {
+                    mCarrierColor = defaultColor;
+               }
+               mCarrierLabel.setTextColor(mCarrierColor);
             } else {
                mCarrierLabel.setVisibility(View.GONE);
             }
