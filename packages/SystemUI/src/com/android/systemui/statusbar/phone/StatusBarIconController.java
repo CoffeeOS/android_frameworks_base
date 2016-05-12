@@ -193,6 +193,7 @@ public class StatusBarIconController implements Tunable {
         mStatusIconsKeyguard.addView(view, viewIndex, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, mIconSize));
         applyIconTint();
+	carrierLabelVisibility();
     }
 
     public void updateSystemIcon(String slot, int index, int viewIndex,
@@ -202,11 +203,13 @@ public class StatusBarIconController implements Tunable {
         view = (StatusBarIconView) mStatusIconsKeyguard.getChildAt(viewIndex);
         view.set(icon);
         applyIconTint();
+	carrierLabelVisibility();
     }
 
     public void removeSystemIcon(String slot, int index, int viewIndex) {
         mStatusIcons.removeViewAt(viewIndex);
         mStatusIconsKeyguard.removeViewAt(viewIndex);
+	carrierLabelVisibility();
     }
 
     public void updateNotificationIcons(NotificationData notificationData) {
@@ -326,13 +329,7 @@ public class StatusBarIconController implements Tunable {
         if (mCarrierLabel != null) {
             if (!forceHideByNumberOfIcons && !mUserDisabledStatusbarCarrier ) {
                mCarrierLabel.setVisibility(View.VISIBLE);
-	       int defaultColor = mContext.getResources().getColor(R.color.status_bar_clock_color);
-               int mCarrierColor = Settings.System.getInt(resolver,
-                   Settings.System.STATUS_BAR_CARRIER_COLOR, defaultColor);
-               if  (mCarrierColor == Integer.MIN_VALUE) {
-                    mCarrierColor = defaultColor;
-               }
-               mCarrierLabel.setTextColor(mCarrierColor);
+               mCarrierLabel.setTextColor(Color.parseColor("#FFFFFF"));
             } else {
                mCarrierLabel.setVisibility(View.GONE);
             }
