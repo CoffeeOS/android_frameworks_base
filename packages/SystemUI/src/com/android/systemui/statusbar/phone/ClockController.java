@@ -12,6 +12,7 @@ import android.view.View;
 import com.android.systemui.R;
 import com.android.systemui.cm.UserContentObserver;
 import com.android.systemui.statusbar.policy.Clock;
+import android.widget.TextView;
 
 import cyanogenmod.providers.CMSettings;
 
@@ -29,6 +30,7 @@ public class ClockController {
     private final Context mContext;
     private final SettingsObserver mSettingsObserver;
     private Clock mRightClock, mCenterClock, mLeftClock, mActiveClock;
+    private TextView mCarrierLabel;
 
     private int mClockLocation;
     private int mAmPmStyle;
@@ -66,6 +68,7 @@ public class ClockController {
         mRightClock = (Clock) statusBar.findViewById(R.id.clock);
         mCenterClock = (Clock) statusBar.findViewById(R.id.center_clock);
         mLeftClock = (Clock) statusBar.findViewById(R.id.left_clock);
+	mCarrierLabel = (TextView) statusBar.findViewById(R.id.statusbar_carrier_text);
         mNotificationIcons = notificationIcons;
         mContext = statusBar.getContext();
 
@@ -104,6 +107,7 @@ public class ClockController {
 
         setClockAndDateStatus();
         setTextColor(mIconTint);
+	mCarrierLabel.setTextColor(mIconTint);
         updateFontSize();
     }
 

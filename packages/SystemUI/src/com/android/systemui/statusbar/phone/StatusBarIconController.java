@@ -193,7 +193,6 @@ public class StatusBarIconController implements Tunable {
         mStatusIconsKeyguard.addView(view, viewIndex, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, mIconSize));
         applyIconTint();
-	carrierLabelVisibility();
     }
 
     public void updateSystemIcon(String slot, int index, int viewIndex,
@@ -209,7 +208,6 @@ public class StatusBarIconController implements Tunable {
     public void removeSystemIcon(String slot, int index, int viewIndex) {
         mStatusIcons.removeViewAt(viewIndex);
         mStatusIconsKeyguard.removeViewAt(viewIndex);
-	carrierLabelVisibility();
     }
 
     public void updateNotificationIcons(NotificationData notificationData) {
@@ -267,7 +265,6 @@ public class StatusBarIconController implements Tunable {
         }
 
         applyNotificationIconsTint();
-        carrierLabelVisibility();
     }
 
     public void hideSystemIconArea(boolean animate) {
@@ -329,7 +326,7 @@ public class StatusBarIconController implements Tunable {
         if (mCarrierLabel != null) {
             if (!forceHideByNumberOfIcons && !mUserDisabledStatusbarCarrier ) {
                mCarrierLabel.setVisibility(View.VISIBLE);
-               mCarrierLabel.setTextColor(Color.parseColor("#FFFFFF"));
+               mCarrierLabel.setTextColor(mIconTint);
             } else {
                mCarrierLabel.setVisibility(View.GONE);
             }
@@ -466,6 +463,7 @@ public class StatusBarIconController implements Tunable {
         mBatteryLevelTextView.setTextColor(mIconTint);
         mBatteryMeterView.setDarkIntensity(mDarkIntensity);
         mClockController.setTextColor(mIconTint);
+        mCarrierLabel.setTextColor(mIconTint);
         applyNotificationIconsTint();
     }
 
