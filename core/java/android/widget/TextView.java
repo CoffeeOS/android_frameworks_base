@@ -145,11 +145,14 @@ import com.android.internal.util.FastMath;
 import com.android.internal.widget.EditableInputConnection;
 
 import org.xmlpull.v1.XmlPullParserException;
+import org.tekos.TextViewUndoRedo;
+import org.tekos.ShakeEventManager;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.HashMap;
 
 /**
  * Displays text to the user and optionally allows them to edit it.  A TextView
@@ -329,6 +332,8 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
 
     private boolean mPreDrawRegistered;
     private boolean mPreDrawListenerDetached;
+
+    private static HashMap<EditText,ShakeEventManager> mMap = new HashMap<EditText, ShakeEventManager>();
 
     // A flag to prevent repeated movements from escaping the enclosing text view. The idea here is
     // that if a user is holding down a movement key to traverse text, we shouldn't also traverse
@@ -5270,6 +5275,19 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
     /** @hide */
     @Override
     protected void onDetachedFromWindowInternal() {
+	boolean isEditText = this instanceof EditText;
+	if (!isEditText)
+		return;
+
+	ShakeEventManager mgr = mMap.get((EditText) this);
+	if (mgr != null) {
+		mgr.unregister();
+		mgr.cleanup();
+		mgr = null;
+	}
+	try {
+		mMap.remove((EditText) this);
+	} catch (Throwable t) { }
         if (mPreDrawRegistered) {
             getViewTreeObserver().removeOnPreDrawListener(this);
             mPreDrawListenerDetached = true;
@@ -8220,6 +8238,26 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
         if (mTransformation != null) {
             mTransformation.onFocusChanged(this, mText, focused, direction, previouslyFocusedRect);
         }
+
+	TextView textView = (TextView) this;
+	boolean isEditText = textView instanceof EditText;
+	if (!isEditText)
+		return;
+
+	ShakeEventManager mgr = mMap.get((EditText) this);
+	if (mgr == null) {
+		TextViewUndoRedo undoRedo = new TextViewUndoRedo(textView);
+		mgr = new ShakeEventManager(textView.getContext());
+		mgr.setTextViewUndoRedo(undoRedo);
+		mMap.put((EditText) this, mgr);
+	}
+	if (focused) {
+		// Activate the SensorListener
+		mgr.register();
+	} else {
+		// Save battery
+		mgr.unregister();
+	}
 
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
     }

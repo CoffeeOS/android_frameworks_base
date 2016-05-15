@@ -4117,4 +4117,7 @@
     <!-- Used to replace a range of characters in text that is too wide
          for the space allocated to it (two dots). -->
     <string name="ellipsis_two_dots">\u2025</string>
+
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
 </resources>
