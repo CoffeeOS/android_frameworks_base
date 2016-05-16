@@ -339,6 +339,6 @@ public class NetworkTraffic extends TextView {
         } else {
             intTrafficDrawable = 0;
         }
-        setCompoundDrawablesWithIntrinsicBounds(0, 0, intTrafficDrawable, 0);
+        setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
     }
 }

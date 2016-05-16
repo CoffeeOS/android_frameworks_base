@@ -1537,7 +1537,7 @@
 
     <!-- If this value is true, Sms encoded as octet is decoded by utf8 decoder.
          If false, decoded by Latin decoder. -->
-    <bool name="config_sms_utf8_support">false</bool>
+    <bool name="config_sms_utf8_support">true</bool>
 
     <!-- If this value is true, The mms content-disposition field is supported correctly.
          If false, Content-disposition fragments are ignored -->
@@ -2561,7 +2561,7 @@
     <string translatable="false" name="config_packagedKeyboardName"></string>
 
     <!-- Show battery fully charged notification -->
-    <bool name="config_showBatteryFullyChargedNotification">false</bool>
+    <bool name="config_showBatteryFullyChargedNotification">true</bool>
     
     <!-- Use alternative way to blur lockscreen -->
     <bool name="config_use_stackblur">false</bool>

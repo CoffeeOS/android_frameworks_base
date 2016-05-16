@@ -97,7 +97,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
     private static final String TAG = "QSTileHost";
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
-    public static final int TILES_PER_PAGE = 8;
+    public static final int TILES_PER_PAGE = 3;
 
     private final Context mContext;
     private final PhoneStatusBar mStatusBar;
@@ -408,7 +408,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         }
         // ensure edit tile is present
         // I DONT LIKE THIS AT ALL, checking to much?
-        mEditButton = (Settings.System.getInt(mContext.getContentResolver(), Settings.System.STATUSBAR_EDITBUTTON_PREFERENCE_KEY, 1) == 1);
+        mEditButton = (Settings.System.getInt(mContext.getContentResolver(), Settings.System.STATUSBAR_EDITBUTTON_PREFERENCE_KEY, 0) == 1);
         if (mEditButton) {
             if (tiles.contains("edit")) {
                 tiles.remove("edit");

@@ -85,7 +85,7 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
     public static final boolean DEBUG_TILES = false;
     public static final boolean DEBUG_DRAG = false;
 
-    private static final int MAX_ROW_COUNT = 3;
+    private static final int MAX_ROW_COUNT = 1;
 
     // how long to wait before resetting the page
     private static final int PAGE_RESET_DELAY = 10000;
@@ -112,7 +112,7 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
     // whether the current view we are dragging in has shifted tiles
     private boolean mMovedByLocation = false;
 
-    protected boolean mFirstRowLarge = true;
+    protected boolean mFirstRowLarge = false;
     private SettingsObserver mSettingsObserver;
 
     List<TileRecord> mCurrentlyAnimating
@@ -2318,7 +2318,7 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
             ContentResolver resolver = mContext.getContentResolver();
             int currentUserId = ActivityManager.getCurrentUser();
             boolean firstRowLarge = CMSettings.Secure.getIntForUser(resolver,
-                    CMSettings.Secure.QS_USE_MAIN_TILES, 1, currentUserId) == 1;
+                    CMSettings.Secure.QS_USE_MAIN_TILES, 0, currentUserId) == 1;
             if (firstRowLarge != mFirstRowLarge) {
                 mFirstRowLarge = firstRowLarge;
                 setTiles(mHost.getTiles());
