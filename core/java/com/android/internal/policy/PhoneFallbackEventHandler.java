@@ -34,9 +34,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import com.android.internal.policy.PhoneWindow;
 
-/**
- * @hide
- */
 public class PhoneFallbackEventHandler implements FallbackEventHandler {
     private static String TAG = "PhoneFallbackEventHandler";
     private static final boolean DEBUG = false;

@@ -2145,6 +2145,7 @@ public final class ActivityStackSupervisor implements DisplayListener {
                                 intentActivity.task.setTaskToReturnTo(HOME_ACTIVITY_TYPE);
                             }
                             options = null;
+			    movedToFront = true;
                         }
                     }
                     if (!movedToFront) {

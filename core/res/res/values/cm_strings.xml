@@ -224,4 +224,11 @@
     <string name="uicc_hot_swapped_event_title">SIM cards have changed</string>
     <string name="uicc_hot_swapped_event_text">Tap to set SIM card default preferences</string>
 
+    <!-- Floating Window -->
+    <string name="floating_window_snap_top">Snap top</string>
+    <string name="floating_window_snap_bottom">Snap bottom</string>
+    <string name="floating_window_snap_left">Snap left</string>
+    <string name="floating_window_snap_right">Snap right</string>
+    <string name="floating_window_minimize">Minimize</string>
+
 </resources>
