@@ -121,8 +121,13 @@ public class WindowAnimator {
         mContext = service.mContext;
         mPolicy = service.mPolicy;
 
-        mBlurUiEnabled = mContext.getResources().getBoolean(
+        boolean blurUiEnabled = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_ui_blur_enabled);
+
+        if (blurUiEnabled) {
+            SettingsObserver observer = new SettingsObserver(new Handler());
+            observer.observe(mContext);
+        }
 
         mAnimationFrameCallback = new Choreographer.FrameCallback() {
             public void doFrame(long frameTimeNs) {
@@ -224,7 +229,7 @@ public class WindowAnimator {
 
         // Only hide windows if the keyguard is active and not animating away.
         boolean keyguardOn = mPolicy.isKeyguardShowingOrOccluded()
-                && (mForceHiding != KEYGUARD_ANIMATING_OUT && !mBlurUiEnabled && !seeThrough);
+                && (mForceHiding != KEYGUARD_ANIMATING_OUT && !mKeyguardBlurEnabled && !seeThrough);
         return keyguardOn && !allowWhenLocked && (win.getDisplayId() == Display.DEFAULT_DISPLAY);
     }
 
@@ -236,7 +241,7 @@ public class WindowAnimator {
         final boolean seeThrough = (CMSettings.System.getInt(mContext.getContentResolver(),
                 CMSettings.System.LOCKSCREEN_SEE_THROUGH, 0) == 1);
 
-        if (mKeyguardGoingAway && !mBlurUiEnabled && !seeThrough) {
+        if (mKeyguardGoingAway && !mKeyguardBlurEnabled && !seeThrough) {
             for (int i = windows.size() - 1; i >= 0; i--) {
                 WindowState win = windows.get(i);
                 if (!mPolicy.isKeyguardHostWindow(win.mAttrs)) {
@@ -250,7 +255,8 @@ public class WindowAnimator {
 
                         // Create a new animation to delay until keyguard is gone on its own.
                         winAnimator.mAnimation = new AlphaAnimation(1.0f, 1.0f);
-                        winAnimator.mAnimation.setDuration(KEYGUARD_ANIM_TIMEOUT_MS);
+                        winAnimator.mAnimation.setDuration(
+                                mKeyguardBlurEnabled ? 0 : KEYGUARD_ANIM_TIMEOUT_MS);
                         winAnimator.mAnimationIsEntrance = false;
                         winAnimator.mAnimationStartTime = -1;
                         winAnimator.mKeyguardGoingAwayAnimation = true;
@@ -340,7 +346,7 @@ public class WindowAnimator {
                         if (nowAnimating && win.mWinAnimator.mKeyguardGoingAwayAnimation) {
                             mForceHiding = KEYGUARD_ANIMATING_OUT;
                         } else {
-                            mForceHiding = win.isDrawnLw() && !mBlurUiEnabled && !seeThrough ?
+                            mForceHiding = win.isDrawnLw() && !mKeyguardBlurEnabled && !seeThrough ?
                                 KEYGUARD_SHOWN : KEYGUARD_NOT_SHOWN;
                         }
                     }
@@ -892,5 +898,31 @@ public class WindowAnimator {
 
     private class DisplayContentsAnimator {
         ScreenRotationAnimation mScreenRotationAnimation = null;
+    }
+
+    private class SettingsObserver extends ContentObserver {
+        public SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        public void observe(Context context) {
+            context.getContentResolver().registerContentObserver(
+                    CMSettings.Secure.getUriFor(CMSettings.Secure.LOCK_SCREEN_BLUR_ENABLED),
+                    false,
+                    this);
+
+            onChange(true);
+        }
+
+        public void unobserve(Context context) {
+            context.getContentResolver().unregisterContentObserver(this);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            // default to being enabled since we are here because the blur config was set to true
+            mKeyguardBlurEnabled = CMSettings.Secure.getInt(mContext.getContentResolver(),
+                    CMSettings.Secure.LOCK_SCREEN_BLUR_ENABLED, 1) == 1;
+        }
     }
 }
