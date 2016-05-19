@@ -23,7 +23,7 @@
     <dimen name="status_bar_recents_app_icon_max_height">48dp</dimen>
 
     <!-- Size of application thumbnail -->
-    <dimen name="status_bar_recents_thumbnail_width">164dp</dimen>
+    <dimen name="status_bar_recents_thumbnail_width">180dp</dimen>
     <dimen name="status_bar_recents_thumbnail_height">145dp</dimen>
     <dimen name="status_bar_recents_thumbnail_bg_padding">4dp</dimen>
 
@@ -134,7 +134,7 @@
     <dimen name="status_bar_header_height">60dp</dimen>
 
     <!-- Height of the status bar header bar when expanded -->
-    <dimen name="status_bar_header_height_expanded">116dp</dimen>
+    <dimen name="status_bar_header_height_expanded">90dp</dimen>
 
     <!-- Height of the status bar header bar when on Keyguard -->
     <dimen name="status_bar_header_height_keyguard">40dp</dimen>
@@ -178,7 +178,7 @@
     <dimen name="qs_tile_spacing">4dp</dimen>
     <dimen name="qs_panel_padding_bottom">8dp</dimen>
     <dimen name="qs_detail_item_height">48dp</dimen>
-    <dimen name="qs_brightness_padding_top">6dp</dimen>
+    <dimen name="qs_brightness_padding_top">15dp</dimen>
     <dimen name="qs_detail_header_text_size">20sp</dimen>
     <dimen name="qs_detail_button_text_size">14sp</dimen>
     <dimen name="qs_detail_item_primary_text_size">16sp</dimen>
@@ -191,7 +191,7 @@
     <dimen name="borderless_button_radius">2dp</dimen>
 
     <!-- How far the expanded QS panel peeks from the header in collapsed state. -->
-    <dimen name="qs_peek_height">8dp</dimen>
+    <dimen name="qs_peek_height">0.0dp</dimen>
 
     <!-- Zen mode panel: condition item button padding -->
     <dimen name="zen_mode_condition_detail_button_padding">8dp</dimen>
@@ -218,7 +218,7 @@
     <dimen name="recents_task_view_application_icon_size">48dp</dimen>
 
     <!-- The radius of the rounded corners on a task view. -->
-    <dimen name="recents_task_view_rounded_corners_radius">2dp</dimen>
+    <dimen name="recents_task_view_rounded_corners_radius">5dp</dimen>
 
     <!-- The min translation in the Z index for the last task. -->
     <dimen name="recents_task_view_z_min">20dp</dimen>
@@ -239,7 +239,7 @@
     <item name="recents_task_view_thumbnail_alpha" format="float" type="dimen">0.9</item>
 
     <!-- The height of a task view bar. -->
-    <dimen name="recents_task_bar_height">56dp</dimen>
+    <dimen name="recents_task_bar_height">70dp</dimen>
 
     <!-- The height of the search bar space. -->
     <dimen name="recents_search_bar_space_height">64dp</dimen>
@@ -282,7 +282,7 @@
     <dimen name="top_stack_slow_down_length">12dp</dimen>
 
     <!-- The side padding of the notifications-->
-    <dimen name="notification_side_padding">8dp</dimen>
+    <dimen name="notification_side_padding">0.0dp</dimen>
 
     <!-- Z distance between notifications if they are in the stack -->
     <dimen name="z_distance_between_notifications">1dp</dimen>
@@ -291,7 +291,7 @@
     <dimen name="notification_padding_dimmed">0dp</dimen>
 
     <!-- The padding between the individual notification cards. -->
-    <dimen name="notification_padding">4dp</dimen>
+    <dimen name="notification_padding">0.0dp</dimen>
 
     <!-- The minimum amount of top overscroll to go to the quick settings. -->
     <dimen name="min_top_overscroll_to_qs">36dp</dimen>
@@ -300,7 +300,7 @@
     <dimen name="notification_collapse_second_card_padding">8dp</dimen>
 
     <!-- The height of the speed bump view. -->
-    <dimen name="speed_bump_height">16dp</dimen>
+    <dimen name="speed_bump_height">0dp</dimen>
 
     <!-- Lockscreen unlocking falsing threshold. -->
     <dimen name="unlock_falsing_threshold">80dp</dimen>
@@ -311,7 +311,7 @@
     <!-- Falsing threshold used when dismissing notifications from the lockscreen. -->
     <dimen name="swipe_helper_falsing_threshold">70dp</dimen>
 
-    <dimen name="notifications_top_padding">8dp</dimen>
+    <dimen name="notifications_top_padding">0dp</dimen>
     
     <!-- Minimum distance the user has to drag down to go to the full shade. -->
     <dimen name="keyguard_drag_down_min_distance">100dp</dimen>
@@ -358,10 +358,10 @@
     <dimen name="edge_tap_area_width">48dp</dimen>
 
     <!-- radius of the corners of the material rounded rect background -->
-    <dimen name="notification_material_rounded_rect_radius">2dp</dimen>
+    <dimen name="notification_material_rounded_rect_radius">0.0dp</dimen>
 
     <!-- radius of the corners of the material rounded rect background but negative-->
-    <dimen name="notification_material_rounded_rect_radius_negative">-2dp</dimen>
+    <dimen name="notification_material_rounded_rect_radius_negative">0.0dp</dimen>
 
     <!-- height of the bottom decor below the notification if present (eg. an expand action) -->
     <dimen name="notification_bottom_decor_height">48dp</dimen>
@@ -393,7 +393,7 @@
     <dimen name="data_usage_graph_marker_width">4dp</dimen>
 
     <!-- The padding bottom of the clock group when QS is expanded. -->
-    <dimen name="clock_expanded_bottom_margin">20dp</dimen>
+    <dimen name="clock_expanded_bottom_margin">10dp</dimen>
 
     <!-- The padding bottom of the clock group when QS is collapsed. -->
     <dimen name="clock_collapsed_bottom_margin">10dp</dimen>

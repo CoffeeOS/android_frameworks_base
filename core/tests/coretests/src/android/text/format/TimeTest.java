@@ -477,6 +477,7 @@ public class TimeTest extends TestCase {
         "Asia/Hong_Kong",
         "Asia/Saigon",
         "Asia/Bangkok",
+        "Asia/Ho Chi Minh",
         "Indian/Cocos",
         "Asia/Rangoon",
         "Asia/Omsk",

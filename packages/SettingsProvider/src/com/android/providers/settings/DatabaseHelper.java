@@ -2606,9 +2606,6 @@ class DatabaseHelper extends SQLiteOpenHelper {
             loadIntegerSetting(stmt, Settings.System.POINTER_SPEED,
                     R.integer.def_pointer_speed);
 
-            loadIntegerSetting(stmt, Settings.System.VIBRATE_WHEN_RINGING,
-                    R.integer.def_vib_when_ringing);
-
             loadIntegerSetting(stmt, Settings.System.STATUS_BAR_SHOW_CARRIER,
                     R.integer.def_carrier_label);
 
@@ -2632,6 +2629,9 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
             loadBooleanSetting(stmt, Settings.System.FLOATING_WINDOW_MODE,
                     R.bool.def_floating_window_mode);
+
+            loadIntegerSetting(stmt, Settings.System.STATUS_BAR_CUSTOM_HEADER,
+                    R.integer.def_custom_header);
 
             /*
              * IMPORTANT: Do not add any more upgrade steps here as the global,

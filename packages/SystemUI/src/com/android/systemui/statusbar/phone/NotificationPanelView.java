@@ -1481,7 +1481,7 @@ public class NotificationPanelView extends PanelView implements
 
         switch (mOneFingerQuickSettingsIntercept) {
             case 1: // Right side pulldown
-                showQsOverride = isLayoutRtl() ? (x < region) : (w - region < x);
+                showQsOverride = true;
                 break;
             case 2: // Left side pulldown
                 showQsOverride = isLayoutRtl() ? (w - region < x) : (x < region);

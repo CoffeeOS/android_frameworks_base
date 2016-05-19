@@ -343,6 +343,7 @@ public class TimeUtilsTest extends TestCase {
             "tf", "Indian/Kerguelen",
             "tg", "Africa/Lome",
             "th", "Asia/Bangkok",
+            "vi", "Asia/Ho Chi Minh",
             "tj", "Asia/Dushanbe",
             "tk", "Pacific/Fakaofo",
             "tl", "Asia/Dili",

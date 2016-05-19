@@ -26,7 +26,7 @@
 
     <dimen name="zen_mode_panel_radius">@dimen/notification_material_rounded_rect_radius</dimen>
 
-    <dimen name="status_bar_expanded_header_elevation">4dp</dimen>
+    <dimen name="status_bar_expanded_header_elevation">0.0dp</dimen>
 
     <dimen name="volume_panel_z">4dp</dimen>
 
@@ -37,7 +37,7 @@
     <dimen name="qs_panel_side_padding">@dimen/notification_side_padding</dimen>
 
     <!-- Padding end for weather text -->
-    <dimen name="status_bar_weather_padding_end">16dp</dimen>
+    <dimen name="status_bar_weather_padding_end">20dp</dimen>
 
     <!-- height of the qs page indicator -->
     <dimen name="qs_panel_page_indicator_height">8dp</dimen>

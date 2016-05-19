@@ -33,4 +33,5 @@
     <bool name="config_softap_extention">true</bool>
     <!-- Whether to enable auto connection feature -->
     <bool name="wifi_autocon">false</bool>
+    <bool name="blur_dialog_has_bottom_navigation_bar">true</bool>
 </resources>

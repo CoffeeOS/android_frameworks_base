@@ -20,19 +20,8 @@ entry can only be only one of hour or day/month type
 day_header entries have a higher priority then hour entries -->
 
 <daylight_headers>
-    <hour_header hour="6" image="nature14" />
-    <hour_header hour="8" image="nature06" />
-    <hour_header hour="9" image="nature02" />
-    <hour_header hour="10" image="nature09" />
-    <hour_header hour="11" image="nature01" />
-    <hour_header hour="12" image="nature13" />
-    <hour_header hour="13" image="nature04" />
-    <hour_header hour="14" image="nature08" />
-    <hour_header hour="16" image="nature07" />
-    <hour_header hour="17" image="nature05" />
-    <hour_header hour="18" image="nature03" />
-    <hour_header hour="19" image="nature10" />
-    <hour_header hour="20" image="nature12" />
-    <hour_header hour="21" image="nature15" />
-    <hour_header hour="22" image="nature11" />
+    <hour_header hour="5" image="unnamed2" />
+    <hour_header hour="8" image="unnamed3" />
+    <hour_header hour="18" image="unnamed4" />
+    <hour_header hour="21" image="unnamed5" />
 </daylight_headers>
