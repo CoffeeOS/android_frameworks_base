@@ -314,6 +314,7 @@ public class TaskStackBuilder {
         if (mFirstTaskOnHome) {
             newIntent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
         }
+	intents[0] = newIntent;
         for (int i = 1; i < intents.length; i++) {
             intents[i] = new Intent(mIntents.get(i));
         }
