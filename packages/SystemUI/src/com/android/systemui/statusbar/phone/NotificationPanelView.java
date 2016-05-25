@@ -1481,7 +1481,7 @@ public class NotificationPanelView extends PanelView implements
         final float w = getMeasuredWidth();
         final float x = event.getX();
         float region = (w * (1.f/4.f)); // TODO overlay region fraction?
-        boolean showQsOverride = false;
+        boolean showQsOverride = true;
 
         switch (mOneFingerQuickSettingsIntercept) {
             case 1: // Right side pulldown
