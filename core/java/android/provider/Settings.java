@@ -3650,6 +3650,11 @@ public final class Settings {
          */
         public static final String SCREENSHOT_SOUND = "screenshot_sound";
 
+	/**
+         * @hide
+         */
+        public static final String SHOW_SU_INDICATOR = "show_su_indicator";
+
         /**
          * Whether to use the custom quick unlock screen control
          * @hide

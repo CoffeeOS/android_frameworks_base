@@ -95,6 +95,7 @@ public class PhoneStatusBarPolicy implements Callback {
     private final UserInfoController mUserInfoController;
     private boolean mAlarmIconVisible;
     private final SuController mSuController;
+    private boolean mSuIndicatorVisible;
 
     // Assume it's all good unless we hear otherwise.  We don't always seem
     // to get broadcasts that it *is* there.
@@ -192,6 +193,9 @@ public class PhoneStatusBarPolicy implements Callback {
         mContext.getContentResolver().registerContentObserver(
                 CMSettings.System.getUriFor(CMSettings.System.SHOW_ALARM_ICON),
                 false, mAlarmIconObserver);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.SHOW_SU_INDICATOR),
+                false, mAlarmIconObserver);
 
         // zen
         mService.setIcon(SLOT_ZEN, R.drawable.stat_sys_zen_important, 0, null);
@@ -231,7 +235,10 @@ public class PhoneStatusBarPolicy implements Callback {
         public void onChange(boolean selfChange, Uri uri) {
             mAlarmIconVisible = CMSettings.System.getInt(mContext.getContentResolver(),
                     CMSettings.System.SHOW_ALARM_ICON, 1) == 1;
+            mSuIndicatorVisible = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.SHOW_SU_INDICATOR, 1) == 1;
             updateAlarm();
+	    updateSu();
         }
 
         @Override
@@ -502,7 +509,7 @@ public class PhoneStatusBarPolicy implements Callback {
     };
 
     private void updateSu() {
-        mService.setIconVisibility(SLOT_SU, mSuController.hasActiveSessions());
+        mService.setIconVisibility(SLOT_SU, mSuController.hasActiveSessions() && mSuIndicatorVisible);
         final int userId = UserHandle.myUserId();
         if (isSuEnabledForUser(userId)) {
             publishSuCustomTile();
