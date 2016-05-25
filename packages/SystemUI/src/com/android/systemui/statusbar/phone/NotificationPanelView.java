@@ -1488,7 +1488,7 @@ public class NotificationPanelView extends PanelView implements
                 showQsOverride = true;
                 break;
             case 2: // Left side pulldown
-                showQsOverride = isLayoutRtl() ? (w - region < x) : (x < region);
+                showQsOverride = true;
                 break;
 	    case 3: // Always
 		showQsOverride = true;
@@ -3130,7 +3130,7 @@ public class NotificationPanelView extends PanelView implements
         public void update() {
             ContentResolver resolver = mContext.getContentResolver();
             mOneFingerQuickSettingsIntercept = CMSettings.System.getInt(
-                    resolver, CMSettings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 3);
+                    resolver, CMSettings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1);
             mDoubleTapToSleepEnabled = CMSettings.System.getInt(
                     resolver, CMSettings.System.DOUBLE_TAP_SLEEP_GESTURE, 1) == 1;
 
