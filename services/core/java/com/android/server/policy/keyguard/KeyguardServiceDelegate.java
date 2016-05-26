@@ -182,7 +182,7 @@ public class KeyguardServiceDelegate {
             }
             if (mKeyguardState.bootCompleted) {
                 mKeyguardService.onBootCompleted();
-                sendStateChangeBroadcast(true);
+                //sendStateChangeBroadcast(true);
             }
             if (mKeyguardState.occluded) {
                 mKeyguardService.setOccluded(mKeyguardState.occluded);
