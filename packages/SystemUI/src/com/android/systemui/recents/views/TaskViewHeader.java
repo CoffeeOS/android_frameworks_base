@@ -76,6 +76,8 @@ public class TaskViewHeader extends FrameLayout {
     Drawable mDarkPinDrawable;
     Drawable mLightFloatDrawable;
     Drawable mDarkFloatDrawable;
+    Drawable mLightMultiwindowDrawable;
+    Drawable mDarkMultiwindowDrawable;
     RippleDrawable mBackground;
     GradientDrawable mBackgroundColorDrawable;
     AnimatorSet mFocusAnimator;
@@ -124,6 +126,10 @@ public class TaskViewHeader extends FrameLayout {
         // Load the screen pinning resources
         mLightPinDrawable = context.getDrawable(R.drawable.ic_pin);
         mDarkPinDrawable = context.getDrawable(R.drawable.ic_pin_dark);
+
+        // Load multi-window resources
+        mLightMultiwindowDrawable = context.getDrawable(R.drawable.ic_multiwindow);
+        mDarkMultiwindowDrawable = context.getDrawable(R.drawable.ic_multiwindow_dark);
 
         // Load floating windows intent
         mLightFloatDrawable = context.getDrawable(R.drawable.ic_floating_on);
@@ -238,42 +244,8 @@ public class TaskViewHeader extends FrameLayout {
 		mFloatButton.setImageDrawable(t.useLightOnPrimaryColor ?
                 mLightFloatDrawable : mDarkFloatDrawable);
         mMoveTaskButton.setVisibility((mConfig.multiStackEnabled) ? View.VISIBLE : View.INVISIBLE);
-        if (mConfig.multiStackEnabled) {
-            updateResizeTaskBarIcon(t);
-        }
-    }
-
-    /** Updates the resize task bar button. */
-    void updateResizeTaskBarIcon(Task t) {
-        Rect display = mSsp.getWindowRect();
-        Rect taskRect = mSsp.getTaskBounds(t.key.stackId);
-        int resId = R.drawable.star;
-        if (display.equals(taskRect) || taskRect.isEmpty()) {
-            resId = R.drawable.vector_drawable_place_fullscreen;
-        } else {
-            boolean top = display.top == taskRect.top;
-            boolean bottom = display.bottom == taskRect.bottom;
-            boolean left = display.left == taskRect.left;
-            boolean right = display.right == taskRect.right;
-            if (top && bottom && left) {
-                resId = R.drawable.vector_drawable_place_left;
-            } else if (top && bottom && right) {
-                resId = R.drawable.vector_drawable_place_right;
-            } else if (top && left && right) {
-                resId = R.drawable.vector_drawable_place_top;
-            } else if (bottom && left && right) {
-                resId = R.drawable.vector_drawable_place_bottom;
-            } else if (top && right) {
-                resId = R.drawable.vector_drawable_place_top_right;
-            } else if (top && left) {
-                resId = R.drawable.vector_drawable_place_top_left;
-            } else if (bottom && right) {
-                resId = R.drawable.vector_drawable_place_bottom_right;
-            } else if (bottom && left) {
-                resId = R.drawable.vector_drawable_place_bottom_left;
-            }
-        }
-        mMoveTaskButton.setImageResource(resId);
+        mMoveTaskButton.setImageDrawable(t.useLightOnPrimaryColor ?
+                mLightMultiwindowDrawable : mDarkMultiwindowDrawable);
     }
 
     /** Unbinds the bar view from the task */
