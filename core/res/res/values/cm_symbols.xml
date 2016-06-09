@@ -164,4 +164,6 @@
   <java-symbol type="string" name="floating_window_snap_right"/>
   <java-symbol type="string" name="floating_window_minimize"/>
 
+    <!-- Usb drive persistent notification -->
+    <java-symbol type="bool" name="config_persistUsbDriveNotification" />
 </resources>
