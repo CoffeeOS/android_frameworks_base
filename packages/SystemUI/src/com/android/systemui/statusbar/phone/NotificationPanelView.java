@@ -83,10 +83,13 @@ import com.android.systemui.statusbar.StatusBarState;
 import com.android.systemui.statusbar.policy.HeadsUpManager;
 import com.android.systemui.statusbar.policy.KeyguardUserSwitcher;
 import com.android.systemui.statusbar.policy.LiveLockScreenController;
+import com.android.systemui.statusbar.policy.WeatherController;
+import com.android.systemui.statusbar.policy.WeatherControllerImpl;
 import com.android.systemui.statusbar.stack.NotificationStackScrollLayout;
 import com.android.systemui.statusbar.stack.StackStateAnimator;
 
 import cyanogenmod.providers.CMSettings;
+import cyanogenmod.weather.util.WeatherUtils;
 
 import java.util.List;
 
@@ -94,7 +97,7 @@ public class NotificationPanelView extends PanelView implements
         ExpandableView.OnHeightChangedListener, ObservableScrollView.Listener,
         View.OnClickListener, NotificationStackScrollLayout.OnOverscrollTopChangedListener,
         KeyguardAffordanceHelper.Callback, NotificationStackScrollLayout.OnEmptySpaceClickListener,
-        HeadsUpManager.OnHeadsUpChangedListener {
+        HeadsUpManager.OnHeadsUpChangedListener, WeatherController.Callback {
 
     private static final boolean DEBUG = false;
 
@@ -303,6 +306,9 @@ public class NotificationPanelView extends PanelView implements
     private ViewLinker mViewLinker;
     private final UnlockMethodCache mUnlockMethodCache;
     private boolean mDetailScrollLock;
+    private boolean mKeyguardWeatherEnabled;
+    private TextView mKeyguardWeatherInfo;
+    private WeatherControllerImpl mWeatherController;
     private enum SwipeLockedDirection {
         UNKNOWN,
         HORIZONTAL,
@@ -442,7 +448,10 @@ public class NotificationPanelView extends PanelView implements
     public void setLiveController(LiveLockScreenController liveController) {
         mLiveLockscreenController = liveController;
     }
-
+    public void setWeatherController(WeatherControllerImpl weatherController) {
+        mWeatherController = weatherController;
+        mWeatherController.addCallback(this);
+    }
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
@@ -545,6 +554,7 @@ public class NotificationPanelView extends PanelView implements
                 }
             }
         });
+        mKeyguardWeatherInfo = (TextView) mKeyguardStatusView.findViewById(R.id.weather_info);
         
             mNotificationPanelView = this;
 
@@ -725,6 +735,7 @@ public class NotificationPanelView extends PanelView implements
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         mSettingsObserver.unobserve();
+        mWeatherController.removeCallback(this);
     }
 
     public static void updatePreferences(Context mContext) {
@@ -3141,7 +3152,13 @@ public class NotificationPanelView extends PanelView implements
                     resolver, CMSettings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1);
             mDoubleTapToSleepEnabled = CMSettings.System.getInt(
                     resolver, CMSettings.System.DOUBLE_TAP_SLEEP_GESTURE, 1) == 1;
-
+          boolean wasKeyguardWeatherEnabled = mKeyguardWeatherEnabled;
+            mKeyguardWeatherEnabled = CMSettings.Secure.getInt(
+                    resolver, CMSettings.Secure.LOCK_SCREEN_WEATHER_ENABLED, 0) == 1;
+            if (mWeatherController != null
+                    && wasKeyguardWeatherEnabled != mKeyguardWeatherEnabled) {
+                onWeatherChanged(mWeatherController.getWeatherInfo());
+            }
             boolean liveLockScreenEnabled = CMSettings.Secure.getInt(
                     resolver, CMSettings.Secure.LIVE_LOCK_SCREEN_ENABLED, 0) == 1;
             mBlurScale = CMSettings.System.getInt(

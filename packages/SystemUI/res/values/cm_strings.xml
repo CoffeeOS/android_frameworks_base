@@ -281,6 +281,8 @@
 
     <!-- Title shown in recents popup for showing app launch in floating mode -->
     <string name="recent_float_mode_title">Float Mode</string>
+    <!-- Weather string format in keyguard -->
+    <string name="keyguard_status_view_weather_format"><xliff:g id="temp">%1$s</xliff:g> <xliff:g id="condition">%2$s</xliff:g></string>
 
     <!-- Floating Windows tile -->
     <string name="quick_settings_floating_windows_on">Float Mode Enabled</string>
