@@ -3128,6 +3128,8 @@ public class NotificationPanelView extends PanelView implements
                     CMSettings.System.STATUSBAR_BLUR_SCALE), false, this);
             resolver.registerContentObserver(CMSettings.System.getUriFor(
                     CMSettings.System.STATUSBAR_BLUR_RADIUS), false, this);
+            resolver.registerContentObserver(CMSettings.Secure.getUriFor(
+                    CMSettings.Secure.LOCK_SCREEN_WEATHER_ENABLED), false, this);
             update();
         }
 
@@ -3307,6 +3309,19 @@ public class NotificationPanelView extends PanelView implements
             mLiveLockscreenController.onLiveLockScreenFocusChanged(false);
         }
     }
+
+    @Override		
+	    public void onWeatherChanged(WeatherController.WeatherInfo info) {		
+	        if (!mKeyguardWeatherEnabled || Double.isNaN(info.temp) || info.condition == null) {		
+	            mKeyguardWeatherInfo.setVisibility(GONE);		
+	        } else {		
+	            mKeyguardWeatherInfo.setText(mContext.getString(		
+	                    R.string.keyguard_status_view_weather_format,		
+	                    WeatherUtils.formatTemperature(info.temp, info.tempUnit),		
+	                    info.condition));		
+	            mKeyguardWeatherInfo.setVisibility(VISIBLE);		
+	        }		
+	    }
 
     private SlideInAnimationListener mSlideInAnimationListener = new SlideInAnimationListener();
 
