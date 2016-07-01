@@ -460,8 +460,8 @@ EdgeGestureService edgeGestureService = null;
         boolean disableNetwork = SystemProperties.getBoolean("config.disable_network", false);
         boolean disableNetworkTime = SystemProperties.getBoolean("config.disable_networktime", false);
         boolean isEmulator = SystemProperties.get("ro.kernel.qemu").equals("1");
-        String externalServer = context.getResources().getString(
-                org.cyanogenmod.platform.internal.R.string.config_externalSystemServer);
+        String[] externalServices = context.getResources().getStringArray(
+                org.cyanogenmod.platform.internal.R.array.config_externalCMServices);
         boolean disableAtlas = SystemProperties.getBoolean("config.disable_atlas", false);
 
         try {
@@ -621,13 +621,13 @@ EdgeGestureService edgeGestureService = null;
             reportWtf("performing boot dexopt", e);
         }
 
-        try {
+        /*try {
             ActivityManagerNative.getDefault().showBootMessage(
                     context.getResources().getText(
                             com.android.internal.R.string.android_upgrading_starting_apps),
                     false);
         } catch (RemoteException e) {
-        }
+        }*/
 
         if (mFactoryTestMode != FactoryTest.FACTORY_TEST_LOW_LEVEL) {
             if (!disableNonCoreServices) {
@@ -1065,22 +1065,13 @@ EdgeGestureService edgeGestureService = null;
         // MMS service broker
         mmsService = mSystemServiceManager.startService(MmsServiceBroker.class);
 
-        final Class<?> serverClazz;
-        try {
-            serverClazz = Class.forName(externalServer);
-            final Constructor<?> constructor = serverClazz.getDeclaredConstructor(Context.class);
-            constructor.setAccessible(true);
-            final Object baseObject = constructor.newInstance(mSystemContext);
-            final Method method = baseObject.getClass().getDeclaredMethod("run");
-            method.setAccessible(true);
-            method.invoke(baseObject);
-        } catch (ClassNotFoundException
-                | IllegalAccessException
-                | InvocationTargetException
-                | InstantiationException
-                | NoSuchMethodException e) {
-            Slog.wtf(TAG, "Unable to start  " + externalServer);
-            Slog.wtf(TAG, e);
+        for (String service : externalServices) {
+            try {
+                Slog.i(TAG, service);
+                mSystemServiceManager.startService(service);
+            } catch (Throwable e) {
+                reportWtf("starting " + service , e);
+            }
         }
 
         // It is now time to start up the app processes...
