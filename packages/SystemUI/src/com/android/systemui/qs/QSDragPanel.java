@@ -86,7 +86,7 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
     public static final boolean DEBUG_TILES = false;
     public static final boolean DEBUG_DRAG = false;
 
-    private static final int MAX_ROW_COUNT = 1;
+    private static final int MAX_ROW_COUNT = 2;
 
     // how long to wait before resetting the page
     private static final int PAGE_RESET_DELAY = 10000;
