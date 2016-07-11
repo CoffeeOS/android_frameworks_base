@@ -105,9 +105,14 @@ public class WifiTile extends QSTile<QSTile.SignalState> {
 
     @Override
     protected void handleClick() {
+        if (!mWifiController.canConfigWifi()) {
+            mHost.startActivityDismissingKeyguard(new Intent(Settings.ACTION_WIFI_SETTINGS));
+            return;
+        }
         mState.copyTo(mStateBeforeClick);
         MetricsLogger.action(mContext, getMetricsCategory(), !mState.enabled);
         mController.setWifiEnabled(!mState.enabled);
+        showDetail(true);
     }
 
     @Override
